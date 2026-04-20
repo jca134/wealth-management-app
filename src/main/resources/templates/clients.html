@@ -3,25 +3,28 @@
 <head>
     <title>Clients</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 30px;
         }
 
-        h1 {
+        h1, h2 {
             margin-bottom: 20px;
         }
 
         table {
             border-collapse: collapse;
             width: 100%;
+            margin-bottom: 30px;
         }
 
         th, td {
             border: 1px solid #ccc;
             padding: 10px;
             text-align: left;
+            vertical-align: top;
         }
 
         th {
@@ -31,10 +34,44 @@
         tr:nth-child(even) {
             background-color: #fafafa;
         }
+
+        form {
+            margin-top: 10px;
+        }
+
+        label {
+            display: inline-block;
+            width: 120px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 6px;
+            width: 250px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .action-form {
+            display: inline;
+            margin-right: 8px;
+        }
+
+        .edit-link {
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
+<nav th:replace="~{fragments/nav :: topnav}"></nav>
+
 <h1>Clients</h1>
+
+<p><a class="btn btn-primary" th:href="@{/clients/new}">Add Client</a></p>
 
 <table>
     <thead>
@@ -43,6 +80,7 @@
         <th>Client Name</th>
         <th>Email</th>
         <th>Advisor Name</th>
+        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -51,6 +89,15 @@
         <td th:text="${client.clientName}"></td>
         <td th:text="${client.email}"></td>
         <td th:text="${client.advisorName}"></td>
+        <td>
+            <a class="edit-link" th:href="@{/clients/edit/{id}(id=${client.clientId})}">Edit</a>
+
+            <form class="action-form"
+                  th:action="@{/clients/delete/{id}(id=${client.clientId})}"
+                  method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Client</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: inline-block;
+            width: 120px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 6px;
+            width: 250px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+<nav th:replace="~{fragments/nav :: topnav}"></nav>
+
+<h1>Edit Client</h1>
+
+<form th:action="@{/clients/update}" th:object="${client}" method="post">
+    <div>
+        <label for="clientId">Client ID:</label>
+        <input type="number" id="clientId" th:field="*{clientId}" readonly>
+    </div>
+
+    <div>
+        <label for="advisorId">Advisor ID:</label>
+        <input type="number" id="advisorId" th:field="*{advisorId}" required>
+    </div>
+
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" required>
+    </div>
+
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" required>
+    </div>
+
+    <div>
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" th:field="*{phone}">
+    </div>
+
+    <div>
+        <label for="address">Address:</label>
+        <input type="text" id="address" th:field="*{address}">
+    </div>
+
+    <div>
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" th:field="*{dob}" required>
+    </div>
+
+    <button type="submit">Update Client</button>
+</form>
+
+<a th:href="@{/clients}">Back to Clients</a>
+</body>
+</html>
