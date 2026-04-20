@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${risk.assessmentId} == null ? 'Add Assessment' : 'Edit Assessment'">Assessment</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<nav th:replace="~{fragments/nav :: topnav}"></nav>
+
+<h1 th:text="${risk.assessmentId} == null ? 'Add Assessment' : 'Edit Assessment'">Assessment</h1>
+
+<form class="entity-form" th:action="@{/client-risk/save}" th:object="${risk}" method="post">
+    <input type="hidden" th:field="*{assessmentId}">
+
+    <label>Client
+        <select th:field="*{clientId}" required>
+            <option value="">-- Select client --</option>
+            <option th:each="c : ${clients}" th:value="${c.clientId}" th:text="${c.name}"></option>
+        </select>
+    </label>
+
+    <label>Profile
+        <select th:field="*{profileName}" required>
+            <option value="">-- Select profile --</option>
+            <option th:each="p : ${profiles}" th:value="${p}" th:text="${p}"></option>
+        </select>
+    </label>
+
+    <label>Risk Score
+        <input type="number" th:field="*{riskScore}" required>
+    </label>
+
+    <label>Assessment Date
+        <input type="date" th:field="*{assessmentDate}" required>
+    </label>
+
+    <label>Method
+        <input type="text" th:field="*{method}" required>
+    </label>
+
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a class="btn" th:href="@{/client-risk}">Cancel</a>
+    </div>
+</form>
+</body>
+</html>

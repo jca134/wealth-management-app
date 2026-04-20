@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${account.accountId} == null ? 'Add Account' : 'Edit Account'">Account</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<nav th:replace="~{fragments/nav :: topnav}"></nav>
+
+<h1 th:text="${account.accountId} == null ? 'Add Account' : 'Edit Account'">Account</h1>
+
+<form class="entity-form" th:action="@{/accounts/save}" th:object="${account}" method="post">
+    <input type="hidden" th:field="*{accountId}">
+
+    <label>Client
+        <select th:field="*{clientId}" required>
+            <option value="">-- Select client --</option>
+            <option th:each="c : ${clients}" th:value="${c.clientId}" th:text="${c.name}"></option>
+        </select>
+    </label>
+
+    <label>Account Type
+        <input type="text" th:field="*{accountType}" required>
+    </label>
+
+    <label>Opened Date
+        <input type="date" th:field="*{openedDate}">
+    </label>
+
+    <label>Status
+        <input type="text" th:field="*{status}">
+    </label>
+
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a class="btn" th:href="@{/accounts}">Cancel</a>
+    </div>
+</form>
+</body>
+</html>

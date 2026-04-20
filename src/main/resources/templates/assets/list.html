@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Assets</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<nav th:replace="~{fragments/nav :: topnav}"></nav>
+
+<h1>Assets</h1>
+
+<p><a class="btn btn-primary" th:href="@{/assets/new}">Add Asset</a></p>
+
+<table>
+    <thead>
+    <tr>
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="asset : ${assets}">
+        <td th:text="${asset.symbol}"></td>
+        <td th:text="${asset.assetName}"></td>
+        <td class="actions">
+            <a class="btn" th:href="@{/assets/edit/{symbol}(symbol=${asset.symbol})}">Edit</a>
+            <form th:action="@{/assets/delete/{symbol}(symbol=${asset.symbol})}" method="post"
+                  onsubmit="return confirm('Delete this asset?');">
+                <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

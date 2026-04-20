@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Client</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<nav th:replace="~{fragments/nav :: topnav}"></nav>
+
+<h1>Add Client</h1>
+
+<form class="entity-form" th:action="@{/clients/add}" th:object="${newClient}" method="post">
+    <label>Client ID
+        <input type="number" th:field="*{clientId}" required>
+    </label>
+
+    <label>Advisor ID
+        <input type="number" th:field="*{advisorId}" required>
+    </label>
+
+    <label>Name
+        <input type="text" th:field="*{name}" required>
+    </label>
+
+    <label>Email
+        <input type="email" th:field="*{email}" required>
+    </label>
+
+    <label>Phone
+        <input type="text" th:field="*{phone}">
+    </label>
+
+    <label>Address
+        <input type="text" th:field="*{address}">
+    </label>
+
+    <label>Date of Birth
+        <input type="date" th:field="*{dob}" required>
+    </label>
+
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a class="btn" th:href="@{/clients}">Cancel</a>
+    </div>
+</form>
+</body>
+</html>

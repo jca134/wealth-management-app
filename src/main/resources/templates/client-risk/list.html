@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Client Risk</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<nav th:replace="~{fragments/nav :: topnav}"></nav>
+
+<h1>Client Risk Assessments</h1>
+
+<p><a class="btn btn-primary" th:href="@{/client-risk/new}">Add Assessment</a></p>
+
+<table>
+    <thead>
+    <tr>
+        <th>Assessment ID</th>
+        <th>Client</th>
+        <th>Profile</th>
+        <th>Risk Score</th>
+        <th>Assessment Date</th>
+        <th>Method</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="r : ${risks}">
+        <td th:text="${r.assessmentId}"></td>
+        <td th:text="${r.clientName}"></td>
+        <td th:text="${r.profileName}"></td>
+        <td th:text="${r.riskScore}"></td>
+        <td th:text="${r.assessmentDate}"></td>
+        <td th:text="${r.method}"></td>
+        <td class="actions">
+            <a class="btn" th:href="@{/client-risk/edit/{id}(id=${r.assessmentId})}">Edit</a>
+            <form th:action="@{/client-risk/delete/{id}(id=${r.assessmentId})}" method="post"
+                  onsubmit="return confirm('Delete this assessment?');">
+                <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

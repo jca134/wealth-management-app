@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Accounts</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<nav th:replace="~{fragments/nav :: topnav}"></nav>
+
+<h1>Accounts</h1>
+
+<p><a class="btn btn-primary" th:href="@{/accounts/new}">Add Account</a></p>
+
+<table>
+    <thead>
+    <tr>
+        <th>Account ID</th>
+        <th>Client</th>
+        <th>Account Type</th>
+        <th>Opened Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="account : ${accounts}">
+        <td th:text="${account.accountId}"></td>
+        <td th:text="${account.clientName}"></td>
+        <td th:text="${account.accountType}"></td>
+        <td th:text="${account.openedDate}"></td>
+        <td th:text="${account.status}"></td>
+        <td class="actions">
+            <a class="btn" th:href="@{/accounts/edit/{id}(id=${account.accountId})}">Edit</a>
+            <form th:action="@{/accounts/delete/{id}(id=${account.accountId})}" method="post"
+                  onsubmit="return confirm('Delete this account?');">
+                <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

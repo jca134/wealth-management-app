@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Wealth Management — Home</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <style>
+        .home-hero p {
+            color: #555;
+            max-width: 640px;
+        }
+    </style>
+</head>
+<body>
+<nav th:replace="~{fragments/nav :: topnav}"></nav>
+
+<div class="home-hero">
+    <h1>Wealth Management</h1>
+    <p>Manage clients, advisors, accounts, transactions, and portfolios from a single place. Click the tabs to get started.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Transactions</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<nav th:replace="~{fragments/nav :: topnav}"></nav>
+
+<h1>Transactions</h1>
+
+<p><a class="btn btn-primary" th:href="@{/transactions/new}">Add Transaction</a></p>
+
+<table>
+    <thead>
+    <tr>
+        <th>Txn ID</th>
+        <th>Account</th>
+        <th>Symbol</th>
+        <th>Type</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Fees</th>
+        <th>Trade Date</th>
+        <th>Settle Date</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="t : ${transactions}">
+        <td th:text="${t.txnId}"></td>
+        <td th:text="${t.accountLabel}"></td>
+        <td th:text="${t.symbol}"></td>
+        <td th:text="${t.txnType}"></td>
+        <td th:text="${t.quantity}"></td>
+        <td th:text="${t.pricePerUnit}"></td>
+        <td th:text="${t.fees}"></td>
+        <td th:text="${t.tradeDate}"></td>
+        <td th:text="${t.settleDate}"></td>
+        <td class="actions">
+            <a class="btn" th:href="@{/transactions/edit/{id}(id=${t.txnId})}">Edit</a>
+            <form th:action="@{/transactions/delete/{id}(id=${t.txnId})}" method="post"
+                  onsubmit="return confirm('Delete this transaction?');">
+                <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

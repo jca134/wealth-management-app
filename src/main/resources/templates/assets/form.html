@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${isNew} ? 'Add Asset' : 'Edit Asset'">Asset</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<nav th:replace="~{fragments/nav :: topnav}"></nav>
+
+<h1 th:text="${isNew} ? 'Add Asset' : 'Edit Asset'">Asset</h1>
+
+<form class="entity-form" th:action="@{/assets/save}" th:object="${asset}" method="post">
+    <input type="hidden" name="isNew" th:value="${isNew}">
+
+    <label>Symbol
+        <input type="text" th:field="*{symbol}" th:readonly="${!isNew}" required>
+    </label>
+
+    <label>Name
+        <input type="text" th:field="*{assetName}" required>
+    </label>
+
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a class="btn" th:href="@{/assets}">Cancel</a>
+    </div>
+</form>
+</body>
+</html>

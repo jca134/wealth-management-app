@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Financial Goals</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<nav th:replace="~{fragments/nav :: topnav}"></nav>
+
+<h1>Financial Goals</h1>
+
+<p><a class="btn btn-primary" th:href="@{/financial-goals/new}">Add Goal</a></p>
+
+<table>
+    <thead>
+    <tr>
+        <th>Goal ID</th>
+        <th>Client</th>
+        <th>Type</th>
+        <th>Target Amount</th>
+        <th>Current Amount</th>
+        <th>Target Date</th>
+        <th>Priority</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="g : ${goals}">
+        <td th:text="${g.goalId}"></td>
+        <td th:text="${g.clientName}"></td>
+        <td th:text="${g.goalType}"></td>
+        <td th:text="${g.targetAmount}"></td>
+        <td th:text="${g.currentAmount}"></td>
+        <td th:text="${g.targetDate}"></td>
+        <td th:text="${g.priority}"></td>
+        <td class="actions">
+            <a class="btn" th:href="@{/financial-goals/edit/{id}(id=${g.goalId})}">Edit</a>
+            <form th:action="@{/financial-goals/delete/{id}(id=${g.goalId})}" method="post"
+                  onsubmit="return confirm('Delete this goal?');">
+                <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

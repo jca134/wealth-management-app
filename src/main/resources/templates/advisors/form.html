@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${advisor.advisorId} == null ? 'Add Advisor' : 'Edit Advisor'">Advisor</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<nav th:replace="~{fragments/nav :: topnav}"></nav>
+
+<h1 th:text="${advisor.advisorId} == null ? 'Add Advisor' : 'Edit Advisor'">Advisor</h1>
+
+<form class="entity-form" th:action="@{/advisors/save}" th:object="${advisor}" method="post">
+    <input type="hidden" th:field="*{advisorId}">
+
+    <label>Name
+        <input type="text" th:field="*{name}" required>
+    </label>
+
+    <label>Email
+        <input type="email" th:field="*{email}" required>
+    </label>
+
+    <label>Phone
+        <input type="text" th:field="*{phone}">
+    </label>
+
+    <label>Office Location
+        <input type="text" th:field="*{officeLocation}">
+    </label>
+
+    <label>Hire Date
+        <input type="date" th:field="*{hireDate}">
+    </label>
+
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a class="btn" th:href="@{/advisors}">Cancel</a>
+    </div>
+</form>
+</body>
+</html>
