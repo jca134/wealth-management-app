@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Clients</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body>
+<h1>Clients</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Client ID</th>
+        <th>Client Name</th>
+        <th>Email</th>
+        <th>Advisor Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="client : ${clients}">
+        <td th:text="${client.clientId}"></td>
+        <td th:text="${client.clientName}"></td>
+        <td th:text="${client.email}"></td>
+        <td th:text="${client.advisorName}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
