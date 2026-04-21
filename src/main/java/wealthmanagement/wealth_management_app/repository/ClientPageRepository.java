@@ -5,6 +5,7 @@ import wealthmanagement.wealth_management_app.model.ClientAdvisorView;
 import wealthmanagement.wealth_management_app.model.ClientOption;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -71,9 +72,15 @@ public class ClientPageRepository {
                 client.getClientId());
     }
 
+    @Transactional
     public void deleteClient(int clientId) {
-        String sql = "DELETE FROM clients WHERE client_id = ?";
-        jdbcTemplate.update(sql, clientId);
+        jdbcTemplate.update(
+                "DELETE FROM transactions WHERE account_id IN (SELECT account_id FROM accounts WHERE client_id = ?)",
+                clientId);
+        jdbcTemplate.update("DELETE FROM accounts WHERE client_id = ?", clientId);
+        jdbcTemplate.update("DELETE FROM client_risk_assessments WHERE client_id = ?", clientId);
+        jdbcTemplate.update("DELETE FROM financial_goals WHERE client_id = ?", clientId);
+        jdbcTemplate.update("DELETE FROM clients WHERE client_id = ?", clientId);
     }
 
     public List<ClientOption> findAllClientOptions() {

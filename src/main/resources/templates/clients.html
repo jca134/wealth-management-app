@@ -89,13 +89,11 @@
         <td th:text="${client.clientName}"></td>
         <td th:text="${client.email}"></td>
         <td th:text="${client.advisorName}"></td>
-        <td>
-            <a class="edit-link" th:href="@{/clients/edit/{id}(id=${client.clientId})}">Edit</a>
-
-            <form class="action-form"
-                  th:action="@{/clients/delete/{id}(id=${client.clientId})}"
-                  method="post">
-                <button type="submit">Delete</button>
+        <td class="actions">
+            <a class="btn" th:href="@{/clients/edit/{id}(id=${client.clientId})}">Edit</a>
+            <form th:action="@{/clients/delete/{id}(id=${client.clientId})}" method="post"
+                  onsubmit="return confirm('Delete this client?');">
+                <button class="btn btn-danger" type="submit">Delete</button>
             </form>
         </td>
     </tr>
