@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SQL Runner</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <style>
+        .runner textarea {
+            width: 100%;
+            min-height: 160px;
+            font-family: "Menlo", monospace;
+            font-size: 13px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .meta {
+            color: #666;
+            font-size: 13px;
+            margin: 10px 0;
+        }
+
+        .error {
+            color: #922b21;
+            font-family: "Menlo", monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            margin-top: 10px;
+        }
+
+        .results {
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+<nav th:replace="~{fragments/nav :: topnav}"></nav>
+
+<div class="runner">
+    <h1>Run Your Own SQL</h1>
+    <p class="meta">Max 200 results.</p>
+
+    <form method="post" th:action="@{/examples/run}">
+        <textarea name="sql" aria-label="SQL query"
+                  placeholder="SELECT * FROM clients LIMIT 10;"
+                  th:text="${submittedSql}"></textarea>
+        <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Run</button>
+        </div>
+    </form>
+
+    <div th:if="${error != null}" class="error" th:text="${error}"></div>
+
+    <div th:if="${columns != null and !columns.isEmpty()}" class="results">
+        <p class="meta">
+            <span th:text="${rowCount}">0</span> row(s) returned<span
+                th:if="${truncated == true}"> — showing first 200</span>.
+        </p>
+        <table>
+            <thead>
+            <tr>
+                <th th:each="col : ${columns}" th:text="${col}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="row : ${rows}">
+                <td th:each="col : ${columns}" th:text="${row.get(col)}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
