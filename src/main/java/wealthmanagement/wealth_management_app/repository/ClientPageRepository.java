@@ -40,13 +40,16 @@ public class ClientPageRepository {
     }
 
     public void addClient(Client client) {
+        Integer nextId = jdbcTemplate.queryForObject(
+                "SELECT COALESCE(MAX(client_id), 0) + 1 FROM clients", Integer.class);
+
         String sql = """
                 INSERT INTO clients (client_id, advisor_id, name, email, phone, address, dob)
                 VALUES (?, ?, ?, ?, ?, ?, ?)
                 """;
 
         jdbcTemplate.update(sql,
-                client.getClientId(),
+                nextId,
                 client.getAdvisorId(),
                 client.getName(),
                 client.getEmail(),

@@ -59,8 +59,12 @@ public class AccountRepository {
     }
 
     public void insert(Account account) {
+        Integer nextId = jdbcTemplate.queryForObject(
+                "SELECT COALESCE(MAX(account_id), 0) + 1 FROM accounts", Integer.class);
+
         jdbcTemplate.update(
-                "INSERT INTO accounts (client_id, account_type, opened_date, status) VALUES (?, ?, ?, ?)",
+                "INSERT INTO accounts (account_id, client_id, account_type, opened_date, status) VALUES (?, ?, ?, ?, ?)",
+                nextId,
                 account.getClientId(),
                 account.getAccountType(),
                 account.getOpenedDate() == null ? null : Date.valueOf(account.getOpenedDate()),

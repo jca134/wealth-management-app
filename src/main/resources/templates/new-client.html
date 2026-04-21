@@ -11,10 +11,6 @@
 <h1>Add Client</h1>
 
 <form class="entity-form" th:action="@{/clients/add}" th:object="${newClient}" method="post">
-    <label>Client ID
-        <input type="number" th:field="*{clientId}" required>
-    </label>
-
     <label>Advisor ID
         <input type="number" th:field="*{advisorId}" required>
     </label>

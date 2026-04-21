@@ -43,8 +43,12 @@ public class AdvisorRepository {
     }
 
     public void insert(Advisor a) {
+        Integer nextId = jdbcTemplate.queryForObject(
+                "SELECT COALESCE(MAX(advisor_id), 0) + 1 FROM advisors", Integer.class);
+
         jdbcTemplate.update(
-                "INSERT INTO advisors (name, email, phone, office_location, hire_date) VALUES (?, ?, ?, ?, ?)",
+                "INSERT INTO advisors (advisor_id, name, email, phone, office_location, hire_date) VALUES (?, ?, ?, ?, ?, ?)",
+                nextId,
                 a.getName(),
                 a.getEmail(),
                 a.getPhone(),
