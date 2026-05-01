@@ -28,15 +28,19 @@ If your local username or password is different, update those two lines before r
 
 ### 2. Create the tables
 
-The application expects the schema to already exist in `wealth_db`. Run the project's `CREATE TABLE` statements for each entity:
+The application expects the schema to already exist in `wealth_db`. Run the project's `CREATE TABLE` statements **in the order below** — each table only references tables listed above it, so creating and loading data in this order satisfies every foreign key:
 
-- `clients`
-- `advisors`
-- `accounts`
-- `assets`
-- `transactions`
-- `financial_goals`
-- `client_risk`
+1. `advisors`
+2. `account_info`
+3. `assets`
+4. `risk_profiles`
+5. `clients` — FK to `advisors`
+6. `accounts` — FK to `clients`, `account_info`
+7. `client_risk_assessments` — FK to `clients`, `risk_profiles`
+8. `financial_goals` — FK to `clients`
+9. `transactions` — FK to `accounts`, `assets`
+
+Load data into the tables in the same order. Inserting into a child table before its parent will fail the foreign-key constraint.
 
 ## Running the app
 
