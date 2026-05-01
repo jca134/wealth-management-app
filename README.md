@@ -11,7 +11,6 @@ A Spring Boot web application for managing clients, advisors, accounts, assets, 
 ### 1. Create the PostgreSQL database
 
 Connect to your local PostgreSQL instance and create the database used by the app:
-
 ```sql
 CREATE DATABASE wealth_db;
 ```
