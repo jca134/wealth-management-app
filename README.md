@@ -16,15 +16,26 @@ CREATE DATABASE wealth_db;
 ```
 
 
-Make sure a PostgreSQL user exists that matches the credentials in `src/main/resources/application.properties`:
+The app reads its database connection from environment variables (`DB_URL`, `DB_USER`, `DB_PASSWORD`). Set the username and password to match your local Postgres role before running the app:
 
 ```
-spring.datasource.url=jdbc:postgresql://localhost:5432/wealth_db
-spring.datasource.username=jadenaguilon
-spring.datasource.password=password123
+export DB_USER=your_pg_user
+export DB_PASSWORD=your_pg_password
 ```
 
-If your local username or password is different, update those two lines before running the app.
+You can find your Postgres usernames with:
+
+```
+psql -d postgres -c "\du"
+```
+
+If you don't already have a role with a password set, create one (run as an existing Postgres superuser):
+
+```
+psql -d postgres -c "CREATE ROLE your_pg_user WITH LOGIN SUPERUSER PASSWORD 'your_pg_password';"
+```
+
+`DB_URL` only needs to be set if your database lives somewhere other than `localhost:5432/wealth_db`.
 
 ### 2. Create the tables
 
@@ -64,8 +75,8 @@ To produce an executable JAR:
 ```
 ./gradlew build
 ```
-Note: There is a hidden SQL runner page on
-http://localhost:8080/examples
+Note: A SQL runner page is available from the top nav (or directly at
+http://localhost:8080/examples) for ad-hoc queries.
 
 The output will be in `build/libs/`.
 
