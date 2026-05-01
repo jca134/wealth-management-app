@@ -64,6 +64,8 @@ To produce an executable JAR:
 ```
 ./gradlew build
 ```
+Note: There is a hidden SQL runner page on
+http://localhost:8080/examples
 
 The output will be in `build/libs/`.
 

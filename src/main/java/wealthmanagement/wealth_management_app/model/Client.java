@@ -3,8 +3,8 @@ package wealthmanagement.wealth_management_app.model;
 import java.time.LocalDate;
 
 public class Client {
-    private int clientId;
-    private int advisorId;
+    private Integer clientId;
+    private Integer advisorId;
     private String name;
     private String email;
     private String phone;
@@ -14,7 +14,7 @@ public class Client {
     public Client() {
     }
 
-    public Client(int clientId, int advisorId, String name, String email, String phone, String address, LocalDate dob) {
+    public Client(Integer clientId, Integer advisorId, String name, String email, String phone, String address, LocalDate dob) {
         this.clientId = clientId;
         this.advisorId = advisorId;
         this.name = name;
@@ -24,19 +24,19 @@ public class Client {
         this.dob = dob;
     }
 
-    public int getClientId() {
+    public Integer getClientId() {
         return clientId;
     }
 
-    public void setClientId(int clientId) {
+    public void setClientId(Integer clientId) {
         this.clientId = clientId;
     }
 
-    public int getAdvisorId() {
+    public Integer getAdvisorId() {
         return advisorId;
     }
 
-    public void setAdvisorId(int advisorId) {
+    public void setAdvisorId(Integer advisorId) {
         this.advisorId = advisorId;
     }
 
