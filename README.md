@@ -45,8 +45,6 @@ The application expects the schema to already exist in `wealth_db`. Run the proj
 - `financial_goals`
 - `client_risk`
 
-(Optional) Insert sample rows so the list pages have data to display.
-
 ## Running the app
 
 From the project root:
