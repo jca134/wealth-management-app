@@ -8,14 +8,7 @@ A Spring Boot web application for managing clients, advisors, accounts, assets, 
 - **PostgreSQL 13+** running locally on port `5432`
 ## Setup
 
-### 1. Clone the repository
-
-```
-git clone <repo-url>
-cd wealth-management-app
-```
-
-### 2. Create the PostgreSQL database
+### 1. Create the PostgreSQL database
 
 Connect to your local PostgreSQL instance and create the database used by the app:
 
@@ -33,7 +26,7 @@ spring.datasource.password=password123
 
 If your local username or password is different, update those two lines before running the app.
 
-### 3. Create the tables
+### 2. Create the tables
 
 The application expects the schema to already exist in `wealth_db`. Run the project's `CREATE TABLE` statements for each entity:
 
