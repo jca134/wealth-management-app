@@ -12,7 +12,24 @@
 
 <p><a class="btn btn-primary" th:href="@{/transactions/new}">Add Transaction</a></p>
 
-<table>
+<div class="search-bar">
+    <input type="search" placeholder="Search id, account, symbol, type..."
+           data-search-target="#transactions-table" data-search-role="text">
+    <span class="date-filter">
+        Trade from
+        <input type="date" data-search-target="#transactions-table" data-search-role="date-from" data-search-col="7">
+        to
+        <input type="date" data-search-target="#transactions-table" data-search-role="date-to" data-search-col="7">
+    </span>
+    <span class="date-filter">
+        Settle from
+        <input type="date" data-search-target="#transactions-table" data-search-role="date-from" data-search-col="8">
+        to
+        <input type="date" data-search-target="#transactions-table" data-search-role="date-to" data-search-col="8">
+    </span>
+</div>
+
+<table id="transactions-table">
     <thead>
     <tr>
         <th>Txn ID</th>
@@ -48,5 +65,6 @@
     </tr>
     </tbody>
 </table>
+<script th:src="@{/js/table-search.js}"></script>
 </body>
 </html>

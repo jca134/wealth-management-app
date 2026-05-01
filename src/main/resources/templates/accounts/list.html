@@ -12,7 +12,18 @@
 
 <p><a class="btn btn-primary" th:href="@{/accounts/new}">Add Account</a></p>
 
-<table>
+<div class="search-bar">
+    <input type="search" placeholder="Search id, client, type, status..."
+           data-search-target="#accounts-table" data-search-role="text">
+    <span class="date-filter">
+        Opened from
+        <input type="date" data-search-target="#accounts-table" data-search-role="date-from" data-search-col="3">
+        to
+        <input type="date" data-search-target="#accounts-table" data-search-role="date-to" data-search-col="3">
+    </span>
+</div>
+
+<table id="accounts-table">
     <thead>
     <tr>
         <th>Account ID</th>
@@ -40,5 +51,6 @@
     </tr>
     </tbody>
 </table>
+<script th:src="@{/js/table-search.js}"></script>
 </body>
 </html>

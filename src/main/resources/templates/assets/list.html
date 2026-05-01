@@ -12,7 +12,12 @@
 
 <p><a class="btn btn-primary" th:href="@{/assets/new}">Add Asset</a></p>
 
-<table>
+<div class="search-bar">
+    <input type="search" placeholder="Search symbol, name..."
+           data-search-target="#assets-table" data-search-role="text">
+</div>
+
+<table id="assets-table">
     <thead>
     <tr>
         <th>Symbol</th>
@@ -34,5 +39,6 @@
     </tr>
     </tbody>
 </table>
+<script th:src="@{/js/table-search.js}"></script>
 </body>
 </html>

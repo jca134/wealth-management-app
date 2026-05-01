@@ -73,7 +73,12 @@
 
 <p><a class="btn btn-primary" th:href="@{/clients/new}">Add Client</a></p>
 
-<table>
+<div class="search-bar">
+    <input type="search" placeholder="Search id, name, email, advisor..."
+           data-search-target="#clients-table" data-search-role="text">
+</div>
+
+<table id="clients-table">
     <thead>
     <tr>
         <th>Client ID</th>
@@ -99,5 +104,6 @@
     </tr>
     </tbody>
 </table>
+<script th:src="@{/js/table-search.js}"></script>
 </body>
 </html>

@@ -12,7 +12,18 @@
 
 <p><a class="btn btn-primary" th:href="@{/client-risk/new}">Add Assessment</a></p>
 
-<table>
+<div class="search-bar">
+    <input type="search" placeholder="Search id, client, profile, method..."
+           data-search-target="#risks-table" data-search-role="text">
+    <span class="date-filter">
+        Assessed from
+        <input type="date" data-search-target="#risks-table" data-search-role="date-from" data-search-col="4">
+        to
+        <input type="date" data-search-target="#risks-table" data-search-role="date-to" data-search-col="4">
+    </span>
+</div>
+
+<table id="risks-table">
     <thead>
     <tr>
         <th>Assessment ID</th>
@@ -42,5 +53,6 @@
     </tr>
     </tbody>
 </table>
+<script th:src="@{/js/table-search.js}"></script>
 </body>
 </html>

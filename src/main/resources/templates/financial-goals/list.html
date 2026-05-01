@@ -12,7 +12,18 @@
 
 <p><a class="btn btn-primary" th:href="@{/financial-goals/new}">Add Goal</a></p>
 
-<table>
+<div class="search-bar">
+    <input type="search" placeholder="Search id, client, type, priority..."
+           data-search-target="#goals-table" data-search-role="text">
+    <span class="date-filter">
+        Target from
+        <input type="date" data-search-target="#goals-table" data-search-role="date-from" data-search-col="5">
+        to
+        <input type="date" data-search-target="#goals-table" data-search-role="date-to" data-search-col="5">
+    </span>
+</div>
+
+<table id="goals-table">
     <thead>
     <tr>
         <th>Goal ID</th>
@@ -44,5 +55,6 @@
     </tr>
     </tbody>
 </table>
+<script th:src="@{/js/table-search.js}"></script>
 </body>
 </html>
