@@ -15,6 +15,7 @@ Connect to your local PostgreSQL instance and create the database used by the ap
 CREATE DATABASE wealth_db;
 ```
 
+
 Make sure a PostgreSQL user exists that matches the credentials in `src/main/resources/application.properties`:
 
 ```
